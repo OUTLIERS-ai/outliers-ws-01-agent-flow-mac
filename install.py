@@ -38,6 +38,13 @@ from pathlib import Path
 import common
 import start as starter
 
+# When the start-up file runs, in the words each system's member reads. On a Mac "log in" alone
+# reads as needing an account (Ashley, 2026-09-24), so the Mac says "switch on your Mac and sign
+# in". The Windows words are exactly what this installer printed before (wave 6, 2026-09-25).
+WHEN_STARTS = "when you switch on your Mac and sign in" if common.IS_MAC else "when the computer starts"
+EACH_TIME = ("each time you switch on your Mac and sign in" if common.IS_MAC
+             else "each time you switch on your computer and sign in")
+
 LAUNCHER_NAME_WIN = "outliers-agent-flow.vbs"
 LAUNCHER_LABEL_MAC = "com.outliers.agent-flow"
 
@@ -435,9 +442,9 @@ def do_install(args) -> int:
             if common.IS_MAC:
                 subprocess.run(["launchctl", "unload", str(lp)], capture_output=True)
             lp.unlink()
-            print(f"\nRemoved the file that starts agent-flow when the computer starts ({how}): {lp}")
+            print(f"\nRemoved the file that starts agent-flow {WHEN_STARTS} ({how}): {lp}")
         else:
-            print(f"\nagent-flow will not start by itself when the computer starts ({how}).")
+            print(f"\nagent-flow will not start by itself {WHEN_STARTS} ({how}).")
         print(f"Running {common.PY} install.py again keeps this choice. "
               f"To switch it back on: {common.PY} install.py --autostart")
         print(f"Start it by hand with: {common.PY} start.py")
@@ -445,14 +452,14 @@ def do_install(args) -> int:
         lp = launcher_path(args.startup_dir)
         text = launcher_text()
         if lp.exists() and lp.read_text(encoding="utf-8") == text:
-            print(f"\nFile that starts agent-flow when the computer starts, already in place: {lp}")
+            print(f"\nFile that starts agent-flow {WHEN_STARTS}, already in place: {lp}")
         else:
             common.atomic_write_text(lp, text)
-            print(f"\nFile that starts agent-flow when the computer starts, written: {lp}")
+            print(f"\nFile that starts agent-flow {WHEN_STARTS}, written: {lp}")
             if common.IS_MAC:
-                print(f"It runs the next time you sign in to your Mac. To start it now: launchctl load \"{lp}\"")
+                print(f"It runs the next time you switch on your Mac and sign in. To start it now: launchctl load \"{lp}\"")
     print("Usage tracking: off. start.py switches it off every time it starts agent-flow "
-          "(AGENT_FLOW_TELEMETRY=false and DO_NOT_TRACK=1), by hand or when the computer starts.")
+          f"(AGENT_FLOW_TELEMETRY=false and DO_NOT_TRACK=1), by hand or {WHEN_STARTS}.")
 
     running_now = False
     if args.start_now or moved:
@@ -493,9 +500,9 @@ def do_uninstall(args) -> int:
         if common.IS_MAC:
             subprocess.run(["launchctl", "unload", str(lp)], capture_output=True)
         lp.unlink()
-        print(f"Removed the file that starts agent-flow when the computer starts: {lp}")
+        print(f"Removed the file that starts agent-flow {WHEN_STARTS}: {lp}")
     else:
-        print("No file that starts agent-flow when the computer starts was found.")
+        print(f"No file that starts agent-flow {WHEN_STARTS} was found.")
     print(f"Left in place (agent-flow's own files, safe to delete by hand): {common.discovery_dir()}"
           + (f" and {common.home() / '.agent-flow'}" if (common.home() / '.agent-flow').exists() else ""))
     return 0
@@ -514,11 +521,11 @@ def main(argv=None) -> int:
     ap.add_argument("--startup-dir", help="Windows Startup folder override (for testing)" if common.IS_WIN
                     else argparse.SUPPRESS)
     when = ap.add_mutually_exclusive_group()
-    when.add_argument("--no-autostart", action="store_true", help="do not add the file that starts agent-flow by itself each time you switch on your computer and sign in (removes it if you have it); saved, so later runs keep this choice")
+    when.add_argument("--no-autostart", action="store_true", help=f"do not add the file that starts agent-flow by itself {EACH_TIME} (removes it if you have it); saved, so later runs keep this choice")
     when.add_argument("--autostart", action="store_true", help="put that file back after an earlier --no-autostart")
     ap.add_argument("--start-now", action="store_true", help="start the server when done")
     ap.add_argument("--wait", type=float, default=180.0, help="seconds to wait for the first download")
-    ap.add_argument("--uninstall", action="store_true", help="remove the hook and the file that starts agent-flow when the computer starts")
+    ap.add_argument("--uninstall", action="store_true", help=f"remove the hook and the file that starts agent-flow {WHEN_STARTS}")
     args = ap.parse_args(argv)
     return do_uninstall(args) if args.uninstall else do_install(args)
 

@@ -71,4 +71,4 @@ agent-flow 0.9.1 sends anonymous usage events (an install code, version, operati
 
 Our files: MIT (see `LICENSE`). agent-flow itself: Apache 2.0, downloaded by you from npm, not included here. See `WHAT-I-STOLE.md`.
 
-This repo is made automatically from outliers-ws-01-agent-flow@a09dd1c. To report a problem or suggest a change, use that repo, not this one.
+This repo is made automatically from outliers-ws-01-agent-flow@4d67f45. To report a problem or suggest a change, use that repo, not this one.

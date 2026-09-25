@@ -1,10 +1,10 @@
 {
   "main": "outliers-ws-01-agent-flow",
-  "main_commit": "a09dd1cf844b651b50035cee90ecf9e77d037dd7",
+  "main_commit": "4d67f453f2f5cf0af316c27288fb972b119d9465",
   "mac": "outliers-ws-01-agent-flow-mac",
   "macgen_commit": "9c2578fc+uncommitted",
   "date": "2026-09-25",
-  "fingerprint": "1c9c3fe95ef1fe54621a3bfa2587130b865110dcf089462f874a76f9cae489b5",
+  "fingerprint": "8c1f59ba66e72e4276a4174a449d03b8bf64799f55eae4ad3017361d18099b00",
   "left_out_of_fingerprint": [
     ".mac-version.json",
     "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
@@ -24,7 +24,7 @@
     {
       "path": "README.md",
       "category": "changed",
-      "sha256": "68fdfaa67a6f079f7917442f20a816e4a55227675e56d2376cc085733f3da791"
+      "sha256": "d8dedea686e0bf3fce20f28b918c9e7c878b00dac1b9a60fde01e5c9d1514db9"
     },
     {
       "path": "WHAT-I-STOLE.md",
@@ -59,7 +59,7 @@
     {
       "path": "guide/GUIDE.md",
       "category": "changed",
-      "sha256": "f15a3687c3d5a5bee09055e942b18ae494c0033d9bfd9db3b835bbc23c7fb6dd"
+      "sha256": "deae47942077efadf7a8f5d4658bfc8f04b0cc070ee9dccdffaae6a1f100c10e"
     },
     {
       "path": "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
@@ -137,7 +137,7 @@
     {
       "path": "guide/img/mac-install-output.png",
       "category": "changed",
-      "sha256": "3bbd3531cb1523fcb9a8226ef2c8628237d31f9f1aa855e294102318f401f82f"
+      "sha256": "a5d9b63eef00a60edde33b65a1a77e96490b8d5e5d567796c161fa40e5725140"
     },
     {
       "path": "guide/img/mac-leftover-server-ended.png",
@@ -222,7 +222,7 @@
     {
       "path": "install.py",
       "category": "same",
-      "sha256": "d4105e70c55430e9ec4b331d00e9c97a0404bb107c22ed412caff6adc3ca95be"
+      "sha256": "f4ed406f1dd14a6bbf139a90cced4f1948ac87563194932358c15b77cc6f3cc7"
     },
     {
       "path": "only_this_computer.js",
@@ -263,6 +263,11 @@
       "path": "tests/mac/mac_server_starts_quickly.py",
       "category": "same",
       "sha256": "1f266b3abe22073768eec355f536cb3738b38284c65b54c85caf15cb2e6b09fb"
+    },
+    {
+      "path": "tests/mac/mac_signin_wording.py",
+      "category": "same",
+      "sha256": "717776b943c766b4cf73edabea1e7c86ddab3c69c3076b93ceba82f18263399d"
     },
     {
       "path": "tests/mac/mac_stop_spares_caller.py",

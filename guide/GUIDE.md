@@ -14,7 +14,7 @@ agent-flow is a free web page that runs on your own computer. Open it in your br
 
 Along the top of the page are tabs, 1 per Claude Code session running on your computer. Each tab is titled with the first words of that session's opening message. Top right shows how many agents are running, an estimate of tokens used (tokens are the units Claude's usage is counted and billed in) and an estimated cost. Along the bottom is a timeline with a LIVE marker and a Review button that replays what happened. There is also a sound button in the top right corner, which mutes the page's small sound effects.
 
-agent-flow was written by another developer and published free, with its code open for anyone to read and change (the Apache 2.0 licence; code at github.com/patoles/agent-flow). It is listed as `agent-flow-app` on npm, the public store of Node.js programs, version 0.9.1 checked on 2026-09-22. It also comes as an add-on for the VS Code code editor. Our download does not contain agent-flow. It contains 5 small Python scripts: an installer (`install.py`), a start-and-stop script (`start.py`), 2 checking scripts (`check_hooks.py` and `cleanup.py`) and `guard.py`, a small program that sits between agent-flow and your browser. Beside them are `common.py`, the shared code the 5 scripts use, and 1 small JavaScript file, `only_this_computer.js`, which makes agent-flow refuse requests from other websites. Together they set agent-flow up safely, because agent-flow installed on its own, unchanged, had faults on Ashley's own PC that kept coming back from 2026-06-12 to 2026-09-16, and has 1 more fault, on a Mac as well, that can throw away your Claude Code settings file and everything in it.
+agent-flow was written by another developer and published free, with its code open for anyone to read and change (the Apache 2.0 licence; code at github.com/patoles/agent-flow). It is listed as `agent-flow-app` on npm, the public store of Node.js programs, version 0.9.1 checked on 2026-09-22. It also comes as an add-on for the VS Code code editor. Our download does not contain agent-flow. It contains 5 small Python scripts: an installer (`install.py`), a start-and-stop script (`start.py`), 2 checking scripts (`check_hooks.py` and `cleanup.py`) and `guard.py`, a small program that sits between agent-flow and your browser. Beside them are `common.py`, the shared code the 5 scripts use, and 1 small JavaScript file, `only_this_computer.js`, which makes agent-flow refuse requests from other websites. Together they set agent-flow up safely, because agent-flow installed on its own, unchanged, had faults on Ashley's own PC that kept coming back from 2026-06-12 to 2026-09-16. It also has 1 fault that happens on a Mac too: it can throw away your Claude Code settings file and everything in it.
 
 This is piece 1 of 4 in the agent workspace. Install them in order: 1 agent-flow, 2 FleetView, 3 ProjectForge, 4 Jeeves. Each one also works on its own.
 
@@ -33,9 +33,10 @@ This is piece 1 of 4 in the agent workspace. Install them in order: 1 agent-flow
 | Port | The number after the colon in an address such as http://127.0.0.1:3001. It picks out which program on your computer answers. In this set of 4: agent-flow 3001, FleetView 3010, ProjectForge 3020, Jeeves 4040. |
 | Node.js, npm, npx | Node.js runs programs written in JavaScript; npm is its public store of programs; npx downloads a program from npm and runs it. |
 | settings.json | Claude Code's settings file, in the `.claude` folder inside your home folder. |
-| Repo | A project's folder of code, kept on GitHub. `git clone` copies it to your computer. |
+| Repo | A project's folder of code, kept on GitHub. The git clone command copies it to your computer. |
 | Watch folder | The folder agent-flow listens to; only sessions started inside it appear. |
 | Exit code | The number a program hands back when it finishes; 0 means all went well. |
+| `~` | Short for your home folder, the folder with your name and the house picture in Finder's sidebar. `~/CRM` is the folder called CRM inside it. |
 
 ## Why you would want it
 
@@ -83,9 +84,9 @@ The page is drawn from 2 sources: the hook, and Claude Code's own session transc
 
 ### 2026-06-12: install day
 
-- Installed with `npx -y agent-flow-app` (the `-y` answers yes to the download question). `npx` comes with Node.js; it downloads a Node.js program and runs it in 1 go. On its first run the package wrote `hook.js` and added it to 9 kinds of event in Claude Code's `settings.json` file: SessionStart (a session opens), PreToolUse and PostToolUse (before and after each tool call), PostToolUseFailure (a tool call fails), SubagentStart and SubagentStop, Notification (Claude Code shows a message), Stop (Claude finishes a reply) and SessionEnd (a session closes).
+- Installed with npx, the downloader that comes with Node.js, and its `-y` option, which answers yes to the download question. `npx` comes with Node.js; it downloads a Node.js program and runs it in 1 go. On its first run the package wrote `hook.js` and added it to 9 kinds of event in Claude Code's `settings.json` file: SessionStart (a session opens), PreToolUse and PostToolUse (before and after each tool call), PostToolUseFailure (a tool call fails), SubagentStart and SubagentStop, Notification (Claude Code shows a message), Stop (Claude finishes a reply) and SessionEnd (a session closes).
 - **Fix 1, the launch folder.** The server remembers the folder it was started from, and only accepts events from Claude Code sessions running inside that folder. Started from the wrong place, it shows nothing. So it was set to start from the Documents folder, which contains every vault.
-- **Start by itself when the computer starts, with no window.** On his PC a small script file started it each time the computer started and he signed in. It runs `npx -y agent-flow-app --no-open`, and `--no-open` stops it opening a browser tab.
+- **Start by itself when the computer starts, with no window.** On his PC a small script file started it each time the computer started and he signed in. That file ran agent-flow through npx with the option `--no-open`, which stops it opening a browser tab.
 - **Every session on 1 screen, tried and undone.** Ashley wanted every session on 1 screen instead of 1 tab each. We changed agent-flow's own code so it sent every session to the same screen. The data looked right, and it was reported as done without anyone looking at the screen. Ashley's reply: "that hasn't worked - It's not working at all." agent-flow's drawing code supports exactly 1 main hexagon per screen, so 6 main hexagons stacked on the same spot and their labels turned to nonsense. agent-flow was put back exactly as its author published it. Since then, every change to a screen is checked with a screenshot, never by reading the data behind it.
 - The 1-screen wish went to a different tool, FleetView, which is piece 2 of 4.
 - A backup of `settings.json` taken at 17:00 that day already had **5 copies** of the agent-flow hook on every event. The next day's backup had 4.
@@ -104,7 +105,7 @@ Each time the server starts it writes a small file into `<home>/.claude/agent-fl
 - **2026-08-18:** the copies had come back: 3 per event.
 - **2026-09-16:** a backup shows 3 per event. On 2026-09-22 the file had 2 copies per event, and all of them were removed that day. No written record was found of the drop from 3 to 2.
 
-At the time, why the copies piled up was not recorded. While building our download (the 5 Python scripts) on 2026-09-22 we read agent-flow 0.9.1's own set-up code and found a cause. Before adding its hook, agent-flow checks whether it is already there by searching your settings for the text `agent-flow/hook.js`, with a forward slash. On a PC the path it writes uses the other slash, so the search never matches its own entry, and **every time the server starts, it adds another copy to all 9 kinds of event**. We tested it on a PC in a test folder: 3 starts gave 3 copies per event. A server that starts by itself every time the computer starts, plus starts by hand during fixes, matches every rise in the chart. We cannot prove it was the only cause, because nobody logged each start.
+At the time, why the copies piled up was not recorded. While building our download (the 5 Python scripts) on 2026-09-22 we read agent-flow 0.9.1's own set-up code and found a cause. Before adding its hook, agent-flow checks whether it is already there by searching your settings for the text `agent-flow/hook.js`, with a forward slash. On a PC the path it writes uses a backslash (`\`), so the search never matches its own entry, and **every time the server starts, it adds another copy to all 9 kinds of event**. We tested it on a PC in a test folder: 3 starts gave 3 copies per event. A server that starts by itself every time the computer starts, plus starts by hand during fixes, matches every rise in the chart. We cannot prove it was the only cause, because nobody logged each start.
 
 On a Mac the path agent-flow writes already uses forward slashes, so its search finds its own entry: this pile-up is a PC fault (read from agent-flow's code; a Mac never showed it in our tests). Our installer still counts the hook on every event at every install and prints the count, so a second copy would show.
 
@@ -114,18 +115,18 @@ agent-flow 0.9.1 sends anonymous usage events (an install code, its version, you
 
 ### 2026-08-06: switched off
 
-At 17:25 on 2026-08-06 the entry that started agent-flow with Ashley's PC was switched off, in the same minute as the FleetView dashboard. Who did it and why was not written down. A note Ashley wrote on 2026-09-22 says these screens were "stopped not deleted" when his work changed direction. The hooks were left in place, so every tool call still started Node.js (the program that runs agent-flow's scripts) once, found no server and quit. Our uninstall removes those hooks.
+At 17:25 on 2026-08-06 the entry that started agent-flow each time Ashley's PC started was switched off, in the same minute as the FleetView dashboard. Who did it and why was not written down. A note Ashley wrote on 2026-09-22 says these screens were "stopped not deleted" when his work changed direction. The hooks were left in place, so every tool call still started Node.js (the program that runs agent-flow's scripts) once, found no server and quit. Our uninstall removes those hooks.
 
 ### 2026-09-22: what a security check of our own kit found
 
 Before this guide went out, our 5 Python scripts (the kit you download) were tested by someone trying to break them, using the real agent-flow in a test home folder. 3 faults were found and all 3 are fixed in the version you download. A 4th, found on 2026-09-24, is the last item below, and it is fixed too.
 
-- **agent-flow could wipe your Claude Code settings when your computer starts.** agent-flow runs its own set-up every time it starts. If it cannot read `settings.json`, it throws the whole file away and writes a new one containing only its 9 hooks: your permission rules, your blocked commands, your model choice and every other hook, gone, with no backup. 2 ordinary slips make the file unreadable to it: a comma after the last item (easy to leave after a hand edit), and an invisible marker at the very start of the file called a byte-order mark, which some editors add when they save. With agent-flow starting by itself each time you log in, that would happen the next time you did, with nothing on screen to tell you. **Our fix:** `start.py` now checks the file before every start and does not start agent-flow if the file is unsafe; it says why on screen and in `logs/start.log`. There is also a second check: a new file, `guard.py`, keeps an exact copy of your settings before agent-flow starts, watches the file for the first 60 seconds, and puts your copy back if agent-flow changed it. Tested with the real agent-flow: with a comma after the last item, or with a byte-order mark, your settings file is left exactly as it was, character for character.
+- **agent-flow could wipe your Claude Code settings when it starts by itself.** agent-flow runs its own set-up every time it starts. If it cannot read `settings.json`, it throws the whole file away and writes a new one containing only its 9 hooks: your permission rules, your blocked commands, your model choice and every other hook, gone, with no backup. 2 ordinary slips make the file unreadable to it: a comma after the last item (easy to leave after a hand edit), and an invisible marker at the very start of the file called a byte-order mark, which some editors add when they save. With agent-flow starting by itself each time you switch on your Mac and sign in, that would happen the next time you did, with nothing on screen to tell you. **Our fix:** `start.py` now checks the file before every start and does not start agent-flow if the file is unsafe; it says why on screen and in `logs/start.log`. There is also a second check: a new file, `guard.py`, keeps an exact copy of your settings before agent-flow starts, watches the file for the first 60 seconds, and puts your copy back if agent-flow changed it. Tested with the real agent-flow: with a comma after the last item, or with a byte-order mark, your settings file is left exactly as it was, character for character.
 - **Stop could close an unrelated program.** `start.py --stop` used to stop whatever program had the process number saved when agent-flow last started. After a restart, the computer can give that number to any program, including Claude Code or your browser. **Our fix:** the saved record now includes the moment the program started, and stop only acts when both match.
 - **Other websites could read the page.** agent-flow's page shows your conversation as it happens: your prompts, Claude's replies, file names and commands. It answers every request that reaches it, and never checks which website the request came from. A website you visit can trick your browser into sending its requests to your own computer, and then read your conversation while you browse. **Our fix:** agent-flow now serves its page on a private port, a number picked at random at each start, and `guard.py` passes that page to you at http://127.0.0.1:3001. `guard.py` answers only requests addressed to this computer (`127.0.0.1`, `localhost` and `[::1]` are 3 ways of writing "this computer"). Anything else is refused.
 - **agent-flow's own 2 ports were still open (found and fixed on 2026-09-24).** `guard.py` guarded only port 3001. In a test with the real agent-flow, a request sent straight to the private port, naming another website as its address, got the page and the live conversation back. The port that receives events from `hook.js` also took a made-up event sent with another website's name on it, and drew it on the screen. **Our fix:** `guard.py` now starts agent-flow with our small file `only_this_computer.js` loaded first (Node.js's `--require` option runs a file before the program itself). It makes both of agent-flow's ports refuse any request that names another website or was sent from one. agent-flow's own files are unchanged. The same test run again: every request from the made-up website was refused (5 of 5), and events from `hook.js` still reached the page.
 
-> **Warning:** 2 limits remain. First, the checks work only when our kit starts agent-flow (`python3 start.py`, or our LaunchAgent that starts it when you log in). A copy started by hand with `npx agent-flow-app` has none of them. Second, any program already running on your own computer can still open the page, as with every page at 127.0.0.1. If you are not watching agent-flow, stop it with `python3 start.py --stop`.
+> **Warning:** 2 limits remain. First, the checks work only when our kit starts agent-flow (`python3 start.py`, or our LaunchAgent, a small file that tells your Mac to start agent-flow when you switch on your Mac and sign in). A copy started by hand with `npx agent-flow-app` has none of them. Second, any program already running on your own computer can still open the page, as with every page at 127.0.0.1. If you are not watching agent-flow, stop it with `python3 start.py --stop`.
 
 ![The page as guard.py (our program between agent-flow and your browser) passes it to your browser, from a made-up session on 2026-09-22: 1 agent, and 5,000 tokens used of the 1,000,000 this session may use. "orchestrator" is the name agent-flow gives the main session.](img/page-through-guard.png)
 
@@ -133,7 +134,7 @@ Before this guide went out, our 5 Python scripts (the kit you download) were tes
 
 - agent-flow exactly as its author published it, downloaded by your own computer from npm. We changed none of its code.
 - The hook entry in settings.json written with forward slashes (/), so agent-flow recognises it and never adds another copy.
-- A LaunchAgent (a small file in `~/Library/LaunchAgents` that tells your Mac to start 1 program each time you log in) that starts agent-flow with no window, from the folder that contains your vaults, with usage tracking off.
+- A LaunchAgent (a small file in `~/Library/LaunchAgents` that tells your Mac to start 1 program each time you switch it on and sign in) that starts agent-flow with no window, from the folder that contains your vaults, with usage tracking off.
 - `cleanup.py`, which deletes the registration files a stopped agent-flow server left behind saying where it was listening, and ends a second server left watching the same folder, run automatically before every start.
 - `check_hooks.py`, a count of every hook on every event.
 - `guard.py`, which puts settings.json back if agent-flow wipes it and refuses page requests from other websites (both found when we tried to break the kit on 2026-09-22).
@@ -145,13 +146,13 @@ Before this guide went out, our 5 Python scripts (the kit you download) were tes
 
 | | Pros | Cons |
 |---|---|---|
-| Cost | Free, with its code open to read. Uses no Claude tokens itself. | Every tool call starts Node.js once, to run `hook.js`, and Claude Code waits for it to finish each time: about 0.05 seconds on our test PC on 2026-09-24, and never more than 1.5 seconds, because `hook.js` ends itself by then. It does this even when the server is off, until you uninstall. |
+| Cost | Free, with its code open to read. Uses no Claude tokens itself. | Every tool call starts Node.js once, to run `hook.js`, and Claude Code waits for it to finish each time: about 0.05 seconds on Ashley's own PC on 2026-09-24 (not measured on a Mac), and never more than 1.5 seconds, because `hook.js` ends itself by then. It does this even when the server is off, until you uninstall. |
 | Setup | About 1 minute with our installer, plus the first download. | Needs Node.js 22 or newer. |
 | What you see | A subagent appears within a second of starting, read from Claude Code's own session transcript file; every tool call is a card beside the agent that made it; the Review button at the bottom of the page replays a finished run. | 1 session per tab. There is no single screen with every session: our 2026-06-12 attempt to add that screen failed. FleetView (piece 2 of 4) is that screen. |
 | Accuracy | Tool calls come straight from Claude Code's own events; subagents, the conversation and the token counts are read from Claude Code's session transcript files. | Token counts and costs are estimates. On Ashley's PC they disagreed with FleetView (the session-and-cost screen in piece 2 of 4) for the same session. |
-| Privacy | agent-flow listens only on your own computer, and our kit makes all 3 ports (the page at 3001, which is `guard.py`'s, and agent-flow's own 2: its private page port and the port that receives events) refuse requests from other websites. | Tab titles show the first words of your prompts, so take care when screen-sharing. agent-flow's own usage tracking (it sends anonymous usage figures to its author) is on unless switched off, and `start.py` switches it off every time it starts agent-flow, whether you start it by hand or it starts with the computer. A copy of agent-flow started by hand, without our kit, has none of these checks. |
+| Privacy | agent-flow listens only on your own computer, and our kit makes all 3 ports (the page at 3001, which is `guard.py`'s, and agent-flow's own 2: its private page port and the port that receives events) refuse requests from other websites. | Tab titles show the first words of your prompts, so take care when screen-sharing. agent-flow's own usage tracking (it sends anonymous usage figures to its author) is on unless switched off, and `start.py` switches it off every time it starts agent-flow, whether you start it by hand or it starts by itself when you switch on your Mac and sign in. A copy of agent-flow started by hand, without our kit, has none of these checks. |
 | Safety | Our kit will not start agent-flow on a settings file it would wipe, and puts the file back if it changes anyway. | agent-flow still runs its own set-up every time it starts. Our checks run before and after that set-up; they cannot stop it happening. |
-| Faults | Our kit handles the faults Ashley met: it starts agent-flow from your watch folder, deletes leftover registration files before every start, and counts the hook on every event at every install. Closing agent-flow by force (Force Quit, or a crash) used to leave a second server running and sending the same events twice; `cleanup.py` now counts how many agent-flow servers are running, instead of how many folders are being watched, ends the extra server, and prints a line saying it did. | agent-flow's own registration files are still written by agent-flow, so a server closed by force leaves its file behind until the next `python3 start.py` or `python3 cleanup.py`. |
+| What the kit does before every start | The faults Ashley met on his PC are dealt with before every start: agent-flow is started from your watch folder, leftover registration files are deleted, and the hook is counted on every event at every install. Closing agent-flow by force (Force Quit, or a crash) used to leave a second server running and sending the same events twice; `cleanup.py` now counts how many agent-flow servers are running, instead of how many folders are being watched, ends the extra server, and prints a line saying it did. | agent-flow's own registration files are still written by agent-flow, so a server closed by force leaves its file behind until the next `python3 start.py` or `python3 cleanup.py`. |
 
 ![The cost of having the hook installed: 1 short-lived program per tool call, whether or not the page is open.](img/per-tool-call.png)
 
@@ -159,19 +160,25 @@ Before this guide went out, our 5 Python scripts (the kit you download) were tes
 
 ### Before you start on a Mac
 
-**Python.** Install Python from https://www.python.org/downloads/macos/ (the macOS installer; we tested 3.14.7). When it finishes, double-click **Install Certificates.command** and **Update Shell Profile.command** in the Python folder inside Applications, then open a new Terminal window. Check with `python3 -c "import sys; print(sys.prefix)"`: it must print a line starting `/Library/Frameworks/Python.framework`. If it starts `/opt/homebrew` or `/usr/local/Cellar`, your Terminal uses Homebrew's Python: every command here still works, and the self-checks below use a private Python folder, which works with either.
+**Python.** Install Python from https://www.python.org/downloads/macos/ (the link labelled "macOS installer"; we tested 3.14.7). When it finishes, double-click **Install Certificates.command** and **Update Shell Profile.command** in the Python folder inside Applications, then open a new Terminal window. Check with `python3 -c "import sys; print(sys.prefix)"`: it should print a line starting `/Library/Frameworks/Python.framework`. If it starts `/opt/homebrew` or `/usr/local/Cellar`, your Terminal uses Homebrew's Python (Homebrew is an add-on installer many Mac owners use). Every command here still works. The self-checks run from a private Python folder: a folder in your home folder with its own copy of Python's add-ons, which works with python.org's Python and with Homebrew's.
 
-**Node.js.** Install the LTS version from https://nodejs.org (we tested v24.21.0), open a new Terminal window, and check with `node --version`: `v22` or higher.
+**Node.js.** Install the LTS version (long-term support: the version that gets security fixes the longest) from https://nodejs.org (we tested v24.21.0), open a new Terminal window, and check with `node --version`: `v22` or higher.
 
-**The first `git`.** Your Mac may show a box asking to install the command line developer tools. Press Install, wait until it has finished, then type the `git` line again (not tested on a real Mac).
+**The first time you type `git`.** Your Mac may show a box asking to install the command line developer tools. Press Install, wait until it has finished, then type the `git` line again.
 
-**If Terminal says `claude` is not found,** type `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc`, open a new Terminal window, and check with `claude --version`.
+**If Terminal says `claude` is not found,** type the line below. It adds the folder Claude Code is installed in to the list of folders Terminal looks in for programs. Then open a new Terminal window and check with `claude --version`.
 
-**Your second brain** is at `~/Second Brain` on a Mac (a folder in your home folder), not in Documents, because macOS can refuse a program that starts by itself access to Documents (not tested on a real Mac). If a page says "macOS refused access to" a folder, move that folder into your home folder and run `python3 install.py` again (not tested on a real Mac).
+```
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+```
 
-**"Allow Python to find devices on local networks?"** If macOS asks this the first time the page opens, press Allow. This advice is not tested on a real Mac.
+**Your second brain** is at `~/Second Brain` on a Mac, a folder in your home folder, not in Documents, because macOS can stop a program that starts by itself from opening your Documents folder. If a page says "macOS refused access to" a folder, move that folder into your home folder and run `python3 install.py` again.
 
-**Apple Silicon or Intel:** the steps are the same on both, and both were tested.
+**"Allow Python to find devices on local networks?"** If macOS asks this the first time the page opens, press Allow.
+
+**Apple Silicon or Intel** (the 2 kinds of chip a Mac can have; the Apple menu, then About This Mac, shows yours): the steps are the same on both, and both were tested.
+
+**Tried only on test Macs** (Macs GitHub rents out by the minute to run scripts, not a person's own Mac): 3 of the steps above were never tried on a real Mac. They are the developer-tools box, macOS stopping a program from opening Documents, and the question about devices on local networks.
 
 ### What to check
 
@@ -183,7 +190,7 @@ Before this guide went out, our 5 Python scripts (the kit you download) were tes
 | Node.js 22 or newer | `node --version` | The LTS version from nodejs.org, as above (LTS means long-term support, the version that goes on getting security fixes longest). Node.js 18 stopped getting security fixes on 2025-04-30 and Node.js 20 on 2026-04-30, so `install.py` stops on anything below 22. Then open a NEW Terminal window, because a window opened before the install cannot find Node.js. |
 | Port 3001 free (the number the page answers on) | Open http://127.0.0.1:3001 in a browser; it should fail to load | Install with `python3 install.py --port 3002` instead, then use 3002 wherever this guide says 3001. |
 
-![The version checks as they printed on a test Mac (macOS 15, Apple Silicon) on 2026-09-25. Your version numbers can be higher.](img/mac-version-checks.png)
+![The version checks as they printed on 2026-09-25 on a test Mac (a Mac GitHub rents out to run scripts; this one ran macOS 15 on Apple Silicon). Your version numbers can be higher.](img/mac-version-checks.png)
 
 You also need to know where your second brain vault and your CRM vault live. The installer finds them for you in 1 of these ways: small files called `.outliers-sb` and `.outliers-crm` in your home folder, each containing the path to 1 of your vaults (the installers from earlier Outliers Accelerator sessions left them there), a folder with an `.obsidian` folder inside it (that is what makes a folder an Obsidian vault) up to 2 levels under your home or Documents folder, or, for the CRM, a vault whose name contains crm, pipeline, sales or clients, or a folder called `CRM` in your home folder (`~/CRM`).
 
@@ -198,19 +205,19 @@ cd outliers-ws-01-agent-flow-mac
 python3 install.py
 ```
 
-   Keep the folder where it lands: the LaunchAgent that starts agent-flow when you log in points at it.
+   Keep the folder where it lands: the LaunchAgent that starts agent-flow when you switch on your Mac and sign in points at it.
 3. Answer 3 questions. Press Return to accept the suggestion in square brackets.
    - Where is your second brain vault?
    - Where is your CRM vault?
    - Which folder should agent-flow watch? It suggests the folder that contains both vaults. It must contain every folder you run Claude Code in, or those sessions will not show.
 
-   If a question shows no suggestion, paste the full path of that vault (in Finder, right-click the folder, press the Option key, and choose Copy as Pathname while it is down). No CRM vault yet? Press Return to leave it blank.
+   If a question shows no suggestion, paste the full path of that vault (in Finder, right-click the folder, press the Option key, and choose Copy as Pathname while it is down). If your CRM from the CRM sessions is at `~/CRM`, the CRM question suggests that folder: press Return to accept it. No CRM vault yet? That question then shows no suggestion; press Return to leave it blank, and the watch folder suggested is still your home folder, so a CRM you add there later still shows. (What Return does at each question was checked on a test Mac on 2026-09-25.)
 4. Wait for the first run. The installer downloads agent-flow and starts it once, with no window, pointed at a temporary empty folder that stands in for your home folder, so it writes its own `hook.js` without touching your settings. It copies that script into your `.claude/agent-flow` folder and stops it. This can take up to 3 minutes on a slow connection. You do not need an account or a password for this step.
-5. Read the table the installer prints at the end: 1 row per kind of event. Every event should show `1` in the "after" column. If you had old copies, the "before" column shows how many, and a dated backup of your settings is named on screen. Last, it writes the LaunchAgent that starts agent-flow when you log in, `~/Library/LaunchAgents/com.outliers.agent-flow.plist`, and says it runs the next time you log in to your Mac.
+5. Read the table the installer prints at the end: 1 row per kind of event. Every event should show `1` in the "after" column. If you had old copies, the "before" column shows how many, and a dated backup of your settings is named on screen. Last, it writes the LaunchAgent that starts agent-flow when you switch on your Mac and sign in, `~/Library/LaunchAgents/com.outliers.agent-flow.plist`, and says it takes effect the next time you do.
 
-![What a successful install prints on a test Mac (macOS 15, Apple Silicon, 2026-09-25). Paths shortened to /Users/<you>; each of the 3 questions was answered by pressing Return, and the test Mac's vaults were made-up ones.](img/mac-install-output.png)
+![What a successful install prints on a test Mac (macOS 15, Apple Silicon, 2026-09-25). Where a path shows /Users/<you>, yours shows your own Mac user name; each of the 3 questions was answered by pressing Return, and the test Mac's vaults were made-up ones.](img/mac-install-output.png)
 
-6. Start it now: `python3 start.py`. From your next log-in it also starts by itself, with no window, each time you log in to your Mac.
+6. Start it now: `python3 start.py`. The installer also prints a line that starts it with launchctl; you do not need to type that line, because `python3 start.py` starts agent-flow straight away. From then on it also starts by itself, with no window, each time you switch on your Mac and sign in.
 7. Open http://127.0.0.1:3001. In the middle of the page you see "WAITING FOR AGENT SESSION" in capitals, and under it "Start a Claude Code session to see activity".
 
 ![The page before any session has started.](img/agentflow-waiting.png)
@@ -221,7 +228,7 @@ python3 install.py
 
 9. Run `python3 check_hooks.py`. It should end with `RESULT: OK`.
 
-> **Tip:** to remove everything later, run `python3 install.py --uninstall`. It stops the server, takes a backup, removes every agent-flow hook entry, and deletes the LaunchAgent that starts agent-flow when you log in. Your settings go back to exactly how they were, character for character, as long as the backup from your first install is still there. If you had no settings file before, an empty settings file (containing only `{}`) is left. The folder `~/.claude/agent-flow` stays; you may delete it by hand.
+> **Tip:** to remove everything later, run `python3 install.py --uninstall`. It stops the server, takes a backup, removes every agent-flow hook entry, and deletes the LaunchAgent that starts agent-flow when you switch on your Mac and sign in. Your settings go back to exactly how they were, character for character, as long as the backup from your first install is still there. If you had no settings file before, an empty settings file (containing only `{}`) is left. The folder `~/.claude/agent-flow` stays; you may delete it by hand.
 
 ## Using it day to day
 
@@ -235,7 +242,7 @@ Every command below runs inside the downloaded folder. In a new Terminal window,
 - **If the page goes quiet:** run `python3 start.py --stop`, then `python3 start.py`, then open a new Claude Code session.
 - **If a start fails,** it now tells you why in 1 sentence on screen: the port was taken, the internet is not reachable and agent-flow is not saved on this computer yet, Node.js is missing or too old, or the package name in `config.json` is wrong. `python3 start.py --status` repeats that sentence later.
 - **Stopping:** `python3 start.py --stop` says "Stopped agent-flow." or "agent-flow was not running. Nothing to stop." Check any time with `python3 start.py --status`.
-- **If you move your vaults**, run `python3 install.py` again and give the new watch folder. The suggestions in square brackets are your OLD paths, so type the new ones for each vault and for the watch folder. If the server was running, the installer stops it and starts it again for the new folder. If you once chose `--no-autostart`, running the installer again without it keeps that choice, because it is saved in `config.json`; `python3 install.py --autostart` switches starting when you log in back on.
+- **If you move your vaults**, run `python3 install.py` again and give the new watch folder. The suggestions in square brackets are your OLD paths, so type the new ones for each vault and for the watch folder. If the server was running, the installer stops it and starts it again for the new folder. If you once chose `--no-autostart`, running the installer again without it keeps that choice, because it is saved in `config.json`; `python3 install.py --autostart` switches starting by itself back on.
 - **Screen-sharing:** close the tab or pick a demo session first. Tab titles show the start of your prompts.
 - **When you are not watching,** stop it with `python3 start.py --stop`. While it is stopped, no website can reach the page.
 
@@ -245,7 +252,7 @@ Every command below runs inside the downloaded folder. In a new Terminal window,
 
 ## Fit it to your own AI system
 
-**The safe way.** Make your changes in a copy of the folder, called `agent-flow-test`, never in the folder you installed. In the copy, run only the self-checks. Never run `install.py` or `start.py` in the copy: both act on the same settings file, the same LaunchAgent that starts agent-flow when you log in, and the same running agent-flow as your everyday folder, so the copy would take them over. The self-checks are safe while your everyday agent-flow is running: they use a made-up home folder and a stand-in for agent-flow, never your real settings or port 3001.
+**The safe way.** Make your changes in a copy of the folder, called `agent-flow-test`, never in the folder you installed. In the copy, run only the self-checks. Never run `install.py` or `start.py` in the copy: both act on the same settings file, the same LaunchAgent that starts agent-flow when you switch on your Mac and sign in, and the same running agent-flow as your everyday folder, so the copy would take them over. The self-checks are safe while your everyday agent-flow is running: they use a made-up home folder and a stand-in for agent-flow, never your real settings or port 3001.
 
 1. Make the copy. Open a new Terminal window (it opens in your home folder, where the download is) and type:
 
@@ -260,7 +267,7 @@ cd agent-flow-test
 rm -rf logs
 ```
 
-3. Once, first, make a private Python folder for the self-checks and install pytest into it (pytest is the program that runs the self-checks; the private folder, `~/outliers-checks`, works whichever Python your Mac uses):
+3. Once, first, make a private Python folder for the self-checks and install pytest into it (pytest is the program that runs the self-checks; the private folder, `~/outliers-checks`, works whichever Python your Mac uses). In the second line, the part before `&&` switches this Terminal window into the private folder, so the `python` after it is the folder's own copy:
 
 ```
 python3 -m venv ~/outliers-checks
@@ -273,10 +280,10 @@ source ~/outliers-checks/bin/activate && python -m pip install pytest
 source ~/outliers-checks/bin/activate && python -m pytest -q
 ```
 
-   Expect `54 passed, 5 skipped`. 4 of the skipped run only against the real agent-flow package, which the checks do not download; they stay skipped unless you set `AGENT_FLOW_REAL=1`. The 5th checks a path only a PC uses. Any other answer means the change broke something, so put it back before you go on.
+   Expect `54 passed, 5 skipped`. 4 of the skipped run only against the real agent-flow package, which the checks do not download; they stay skipped unless you set `AGENT_FLOW_REAL=1`, an environment variable (a setting a program reads when it starts; see "Worth knowing"). The 5th checks a path only a PC uses. Any other answer means the change broke something, so put it back before you go on.
 5. When a change passes, copy the changed files back into your everyday folder, `outliers-ws-01-agent-flow-mac`. Go into it with `cd ../outliers-ws-01-agent-flow-mac`, then run `python3 start.py --stop`, then `python3 start.py`, then `python3 check_hooks.py`, and expect `RESULT: OK`. If you changed `install.py`, run `python3 install.py` there before `python3 start.py`.
 
-Read "Every command and setting" near the end of this guide before you ask Claude Code for a change: the watch folder, the port and whether agent-flow starts when you log in are already settings in `config.json`. Leave 1 line alone: the agent-flow hook line inside Claude Code's own `settings.json`. Never type that line by hand; `python3 install.py` writes it, and `python3 check_hooks.py` proves there is still exactly 1 copy of it on each event.
+Read "Every command and setting" near the end of this guide before you ask Claude Code for a change: the watch folder, the port and whether agent-flow starts by itself when you switch on your Mac and sign in are already settings in `config.json`. Leave 1 line alone: the agent-flow hook line inside Claude Code's own `settings.json`. Never type that line by hand; `python3 install.py` writes it, and `python3 check_hooks.py` proves there is still exactly 1 copy of it on each event.
 
 Ashley changed his own copy. He tried patching agent-flow to put every session in 1 tab, looked at the screen, saw 6 sessions stacked on the same spot, and threw the patch away. He worked out 2 fixes on his own PC himself: start the server from the folder that sits above all your vaults, or it never hears your sessions; and delete the leftover registration files, or events stop arriving with no warning. His own file that started agent-flow with no window each time his PC started left usage tracking on; ours switches it off. He added a count of hooks after his own settings file reached 12 copies of the same hook on every event. The download you have contains both fixes and the hook count.
 
@@ -320,7 +327,7 @@ Add 1 NEW hook to my Claude Code settings.json on SubagentStart and SubagentStop
 Write stop_all.py and start_all.py in this folder. stop_all.py runs start.py --stop and then removes the agent-flow hooks using common.remove_agent_flow, with a backup. start_all.py puts the hooks back with common.install_agent_flow and runs start.py. Add tests using a temporary home folder, like the ones in tests/, and run them in my private Python folder ~/outliers-checks.
 ```
 
-7. **Run it only when you want it.** Skip the LaunchAgent that starts agent-flow when you log in, and start it by hand instead. `--no-autostart` also removes the LaunchAgent if you already have it. The choice is saved in `config.json`, so running `python3 install.py` again later keeps it; `python3 install.py --autostart` puts the LaunchAgent back.
+7. **Run it only when you want it.** Skip the LaunchAgent that starts agent-flow when you switch on your Mac and sign in, and start it by hand instead. `--no-autostart` also removes the LaunchAgent if you already have it. The choice is saved in `config.json`, so running `python3 install.py` again later keeps it; `python3 install.py --autostart` puts the LaunchAgent back.
 
 ```
 Run python3 install.py --no-autostart and check that ~/Library/LaunchAgents/com.outliers.agent-flow.plist is gone. Then make 2 files on my Desktop that I can double-click: "Agent screen.command", which runs python3 start.py in this folder, and "Stop agent screen.command", which runs python3 start.py --stop. Make both runnable with chmod +x and show me their contents.
@@ -351,10 +358,10 @@ Make a LaunchAgent that runs check_hooks.py with python3 once a week on Monday a
 | `--second-brain <path>`, `--crm <path>` | Gives the vault paths instead of answering the questions. |
 | `--watch-folder <path>` | Sets the watch folder and skips the 3 questions. The installer warns you if a vault is not inside it. |
 | `--port <number>` | The page's port (default 3001). A running server is moved to the new port. |
-| `--no-autostart` | Does not add the file that starts agent-flow when the computer starts; also removes that file if you already have it. The choice is saved in `config.json`, and later runs of `install.py` keep it. |
+| `--no-autostart` | Does not add the LaunchAgent that starts agent-flow when you switch on your Mac and sign in; also removes it if you already have it. The choice is saved in `config.json`, and later runs of `install.py` keep it. |
 | `--autostart` | Puts that file back after an earlier `--no-autostart`, and saves that choice instead. |
 | `--start-now` | Starts the server at the end, so you can skip step 6. |
-| `--uninstall` | Stops the server, removes every agent-flow hook (backup first) and the file that starts agent-flow when the computer starts. |
+| `--uninstall` | Stops the server, removes every agent-flow hook (backup first) and the LaunchAgent that starts agent-flow when you switch on your Mac and sign in. |
 | `--package`, `--node-path`, `--wait` | Advanced and for testing. `--package`: which agent-flow version to run (default `agent-flow-app@0.9.1`). `--node-path`: which copy of Node.js the hook should use. `--wait`: how many seconds to wait for the first download (default 180). |
 
 **start.py**
@@ -365,7 +372,7 @@ Make a LaunchAgent that runs check_hooks.py with python3 once a week on Monday a
 | `--stop` | Stops the server this kit started. |
 | `--status` | Says "Running" or "Not running", and if the last start was refused or failed, the 1-sentence reason. Exit code 0 when running, 1 when not. |
 | `--port`, `--watch-folder`, `--package`, `--wait` | Override `config.json` for this run only. |
-| `--foreground`, `--quiet` | Used by the LaunchAgent that starts agent-flow when you log in. `--foreground`: stay running until agent-flow stops, instead of handing your terminal straight back, which the LaunchAgent needs. `--quiet`: print nothing at all. |
+| `--foreground`, `--quiet` | Used by the LaunchAgent that starts agent-flow when you switch on your Mac and sign in. `--foreground`: stay running until agent-flow stops, instead of handing your terminal straight back, which the LaunchAgent needs. `--quiet`: print nothing at all. |
 
 
 **check_hooks.py**: `--fix` keeps 1 copy of each repeated hook after a dated backup; `--settings <file>` checks a different settings file. Exit codes: 0 all well, 1 duplicates found, 2 the file cannot be read.
@@ -374,12 +381,12 @@ Make a LaunchAgent that runs check_hooks.py with python3 once a week on Monday a
 
 **Files the kit makes while it runs**
 
-- `config.json`: your 2 vault paths, the watch folder, the agent-flow version, the port and whether the file that starts agent-flow when the computer starts is switched on (later runs of `install.py` keep that answer unless you add `--autostart` or `--no-autostart`). `config.example.json` shows what the file looks like.
+- `config.json`: your 2 vault paths, the watch folder, the agent-flow version, the port and whether the LaunchAgent that starts agent-flow when you switch on your Mac and sign in is switched on (later runs of `install.py` keep that answer unless you add `--autostart` or `--no-autostart`). `config.example.json` shows what the file looks like.
 - `logs/start.log`: the kit's own notes, such as a refused start or a settings file put back.
 - `logs/agent-flow.log`: agent-flow's own output. `start.py` reads its last 30 lines to work out the 1-sentence reason it prints when a start fails; open it yourself for the full text.
 - `logs/agent-flow.pid` (PID stands for process ID, the number the computer gives a running program): the number and start time of `guard.py`, which runs agent-flow, so `--stop` finds it and nothing else.
 - Settings backups next to `settings.json`: `settings.json.bak-agent-flow-<date>` (before install), `.bak-agent-flow-uninstall-<date>` (before an uninstall), `.bak-hookdedupe-<date>` (before `--fix`) and `.bak-agent-flow-undo-<date>` (agent-flow's rewritten version, kept when `guard.py` put yours back).
-- The LaunchAgent that starts agent-flow when you log in: `~/Library/LaunchAgents/com.outliers.agent-flow.plist`. It takes effect from your next log-in; until then, start agent-flow with `python3 start.py`. To see whether it is running (each line is 1 program your Mac started; the name ends `com.outliers.agent-flow`):
+- The LaunchAgent that starts agent-flow when you switch on your Mac and sign in: `~/Library/LaunchAgents/com.outliers.agent-flow.plist`. It takes effect the next time you switch on your Mac and sign in; until then, start agent-flow with `python3 start.py`. To see whether it is running (each line is 1 program your Mac started; the name ends `com.outliers.agent-flow`):
 
 ```
 launchctl list | grep outliers
@@ -399,7 +406,7 @@ launchctl list | grep outliers
 | Half a page: tool call cards appear, but no subagent hexagons, the tab is titled `Session` and a number instead of your prompt, and the token count stays at 0 | You have set `CLAUDE_CONFIG_DIR` to keep Claude Code's folder somewhere other than `<home>/.claude`. The hook still reaches agent-flow, but agent-flow reads session transcripts only from `<home>/.claude/projects/`, and yours are not there. | Start Claude Code without `CLAUDE_CONFIG_DIR`, or move the folder back to `<home>/.claude`. agent-flow cannot be pointed anywhere else; the folder is written into its code. |
 | Still nothing after a new session | A leftover file from an old agent-flow server, pointing at a folder deeper inside your watch folder, is taking the events (seen on Ashley's PC). | `python3 cleanup.py`, then `python3 start.py --stop` and `python3 start.py`, then a new session. |
 | "agent-flow was NOT started, to protect your Claude Code settings" | settings.json has a typing error, or an invisible marker at its very start that some editors add (a byte-order mark); agent-flow would have replaced the whole file. | Error with a line number: open settings.json at that line, fix it (a comma after the last item is the usual cause), save. Byte-order mark: run `python3 install.py`, which removes it after a backup. Then `python3 start.py`. |
-| The page never loads after you log in | The settings check refused to start agent-flow when you logged in, or the start failed, and nothing was on screen to tell you. | `python3 start.py --status` prints the 1-sentence reason; fix as it says, then `python3 start.py`. |
+| The page never loads after you switch on your Mac and sign in | The settings check refused to start agent-flow when you signed in, or the start failed, and nothing was on screen to tell you. | `python3 start.py --status` prints the 1-sentence reason; fix as it says, then `python3 start.py`. |
 | "agent-flow did not start", then a sentence | The start failed. The sentence names the cause: the port was taken, the internet could not be reached and agent-flow is not saved on this computer yet, Node.js is missing or too old, or the package name in `config.json` is wrong. | Do what the sentence says. For a taken port, run `python3 start.py` again. `logs/agent-flow.log` has the full text if you want it. |
 | "Ended 1 agent-flow server(s) left behind when the last one was closed by force" | agent-flow was closed by force (Force Quit, or a crash), or the Mac shut down without `python3 start.py --stop`, so agent-flow outlived the program that started it. | Nothing to do. It has already been ended. Use `python3 start.py --stop` rather than Force Quit and it will not happen again. |
 | "Port 3001 is already in use" | Another program uses that port. | `python3 install.py --port 3002`, then `python3 start.py`, then open http://127.0.0.1:3002. |
