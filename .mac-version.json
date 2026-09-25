@@ -4,7 +4,7 @@
   "mac": "outliers-ws-01-agent-flow-mac",
   "macgen_commit": "9c2578fc+uncommitted",
   "date": "2026-09-25",
-  "fingerprint": "8c1f59ba66e72e4276a4174a449d03b8bf64799f55eae4ad3017361d18099b00",
+  "fingerprint": "9f69617bcb79c6e05b6e8102328482a9cb83e41dad0c687671ff49d73d5551ac",
   "left_out_of_fingerprint": [
     ".mac-version.json",
     "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
@@ -59,7 +59,7 @@
     {
       "path": "guide/GUIDE.md",
       "category": "changed",
-      "sha256": "deae47942077efadf7a8f5d4658bfc8f04b0cc070ee9dccdffaae6a1f100c10e"
+      "sha256": "00fa0b4138215fed0de6974f7f6f0157388fcfbad602fb0f3f92107700819410"
     },
     {
       "path": "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
@@ -122,12 +122,12 @@
     {
       "path": "guide/img/mac-download-folder.png",
       "category": "changed",
-      "sha256": "6223b1fd360770a5b24bc46efe45aa075ce86c45f20f60a54fbddd255d8a7dcc"
+      "sha256": "c30bd20db24ab3f46b877e71cbe1269274725844824764c8e29419a8dd5a80f8"
     },
     {
       "path": "guide/img/mac-download-steps.png",
       "category": "changed",
-      "sha256": "36460ac3969b13f5832f5567534643906ca159c44b99b73b80fad490dd7b63c7"
+      "sha256": "25a06cf638720a61a4812602c915f71c6f0b70816e9ac0ce4b58ac8162a0e39a"
     },
     {
       "path": "guide/img/mac-hook-copies-over-time.png",
