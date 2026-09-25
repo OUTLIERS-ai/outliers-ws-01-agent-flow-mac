@@ -1,0 +1,313 @@
+{
+  "main": "outliers-ws-01-agent-flow",
+  "main_commit": "a09dd1cf844b651b50035cee90ecf9e77d037dd7",
+  "mac": "outliers-ws-01-agent-flow-mac",
+  "macgen_commit": "9c2578fc+uncommitted",
+  "date": "2026-09-25",
+  "fingerprint": "1c9c3fe95ef1fe54621a3bfa2587130b865110dcf089462f874a76f9cae489b5",
+  "left_out_of_fingerprint": [
+    ".mac-version.json",
+    "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
+    "guide/agent-flow-watch-your-agents-hand-work-to-each-other-live.html"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "category": "same",
+      "sha256": "c6aa43fae59ff40657369a9deb5c32b86b3e767d2a6fd26ba051a0f10d6250ea"
+    },
+    {
+      "path": "LICENSE",
+      "category": "same",
+      "sha256": "489c7cbe55ba5dc65bb4dcbd5a4a88a4f8674ad95919aa9d05ae95b3f7228a17"
+    },
+    {
+      "path": "README.md",
+      "category": "changed",
+      "sha256": "68fdfaa67a6f079f7917442f20a816e4a55227675e56d2376cc085733f3da791"
+    },
+    {
+      "path": "WHAT-I-STOLE.md",
+      "category": "same",
+      "sha256": "231c3def20f57daaea8cdbf13c07a12fde483da9cec94cd607b7e0c73b033920"
+    },
+    {
+      "path": "check_hooks.py",
+      "category": "same",
+      "sha256": "695023689a20ef15b756fb7bf17a0111d8f6418b647f733cf7a93579ca2f98c9"
+    },
+    {
+      "path": "cleanup.py",
+      "category": "same",
+      "sha256": "b10b4ea7d3c51af159b2d880bb60ecac9831f4ba89197d76b756023773243fd4"
+    },
+    {
+      "path": "common.py",
+      "category": "same",
+      "sha256": "ed59b1611ebc2e2650f38311c609754933fe9eb46928c5e01f1bee117b2168b1"
+    },
+    {
+      "path": "config.example.json",
+      "category": "same",
+      "sha256": "7b73f53d03eb025680e08d4c6a3ad82056ef611ae43538d28843bd0ddc1ab551"
+    },
+    {
+      "path": "guard.py",
+      "category": "same",
+      "sha256": "bf233fd4e5f431c0cd1fccdbee9cb2934f0b285d0d990e288697a62fe29d7f37"
+    },
+    {
+      "path": "guide/GUIDE.md",
+      "category": "changed",
+      "sha256": "f15a3687c3d5a5bee09055e942b18ae494c0033d9bfd9db3b835bbc23c7fb6dd"
+    },
+    {
+      "path": "guide/agent-flow Watch Your Agents Hand Work to Each Other, Live (Mac).pdf",
+      "category": "left out of the fingerprint"
+    },
+    {
+      "path": "guide/agent-flow-watch-your-agents-hand-work-to-each-other-live.html",
+      "category": "left out of the fingerprint"
+    },
+    {
+      "path": "guide/img/agentflow-2-agents.png",
+      "category": "same",
+      "sha256": "9273b79fb164c8ae5bde3f173280855d071819350dc748e993b4e85f6e661cc9"
+    },
+    {
+      "path": "guide/img/agentflow-subagent-starting.png",
+      "category": "same",
+      "sha256": "b39c028d1508c20e995c041186a174babe8a9a316007fe3c88e6b3d482a15fa2"
+    },
+    {
+      "path": "guide/img/agentflow-subagent-working.png",
+      "category": "same",
+      "sha256": "ca38d806ffedbaf3a86fe365695835edcefe47642148f68366206f50b756412c"
+    },
+    {
+      "path": "guide/img/agentflow-waiting.png",
+      "category": "same",
+      "sha256": "a67c73089ad72de53a3fec18afcd3db9424836117cda69b41b1699d5cee1cf5b"
+    },
+    {
+      "path": "guide/img/download-folder.png",
+      "category": "same",
+      "sha256": "106ee7d56539e25069ebb9cafe6ca328d8747a4b7c2657c26dda0fb475780c3f"
+    },
+    {
+      "path": "guide/img/download-steps.png",
+      "category": "same",
+      "sha256": "10f19cd5a0e2217885cf01271316e2ced8c290281a53196aee143c9a7fd50f2e"
+    },
+    {
+      "path": "guide/img/event-path.png",
+      "category": "same",
+      "sha256": "a59a221f321eb1f8424fbcbbe7650a4e30a3ce4f4acbb607cb29924e55645e0d"
+    },
+    {
+      "path": "guide/img/hook-copies-over-time.png",
+      "category": "same",
+      "sha256": "1d37d05ac86b896e2c266b0f836d0cfeaccf94fd7ec3c4ccb411b64cc1de71ba"
+    },
+    {
+      "path": "guide/img/install-output.png",
+      "category": "same",
+      "sha256": "074469edb2cf330c24bafb8f1cbba38c82290d69ba1ec57e6c5c8e4a4d06bf51"
+    },
+    {
+      "path": "guide/img/leftover-server-ended.png",
+      "category": "same",
+      "sha256": "89363e94b233b68ea5c8c39720138db7ed8727354379f42026c6c22930ecffb4"
+    },
+    {
+      "path": "guide/img/mac-download-folder.png",
+      "category": "changed",
+      "sha256": "6223b1fd360770a5b24bc46efe45aa075ce86c45f20f60a54fbddd255d8a7dcc"
+    },
+    {
+      "path": "guide/img/mac-download-steps.png",
+      "category": "changed",
+      "sha256": "36460ac3969b13f5832f5567534643906ca159c44b99b73b80fad490dd7b63c7"
+    },
+    {
+      "path": "guide/img/mac-hook-copies-over-time.png",
+      "category": "changed",
+      "sha256": "d53910a24ace747b5ab865ecd1a267cc3954cdbed9a901eb05b5f2882a388657"
+    },
+    {
+      "path": "guide/img/mac-install-output.png",
+      "category": "changed",
+      "sha256": "3bbd3531cb1523fcb9a8226ef2c8628237d31f9f1aa855e294102318f401f82f"
+    },
+    {
+      "path": "guide/img/mac-leftover-server-ended.png",
+      "category": "changed",
+      "sha256": "e9b4f571829ab947416b983ccec81af2d686e1c65b38286fbe6b08e44152c8e3"
+    },
+    {
+      "path": "guide/img/mac-start-failed-says-why.png",
+      "category": "changed",
+      "sha256": "e97654143d30addf2acd6467767cb755d961aac7723bfd0c3c207782f503ff65"
+    },
+    {
+      "path": "guide/img/mac-start-refused.png",
+      "category": "changed",
+      "sha256": "9a67afcbc5670059b140ab2842b0a7b4b697d57e48567a4a81a62336eb98c18f"
+    },
+    {
+      "path": "guide/img/mac-status-stop.png",
+      "category": "changed",
+      "sha256": "780e8d20886e83cae26999f76de08bb13fa49cad3ec1cd774ee6f2cac2fec8cb"
+    },
+    {
+      "path": "guide/img/mac-version-checks.png",
+      "category": "changed",
+      "sha256": "9cd39c3c9cf4d2d415feb77ea793374ee96a00801d22cbd5f86fa817ee8647f8"
+    },
+    {
+      "path": "guide/img/mac-watch-folder.png",
+      "category": "changed",
+      "sha256": "ad9d8bb30284a3fa18fc975f73ca2c9558242f39920c760de9cfd55d8a5ae508"
+    },
+    {
+      "path": "guide/img/original-agentflow-live.png",
+      "category": "same",
+      "sha256": "8a68a233af71563e9348297f7f59eb0733a8a99f887a4363c7d5f3db54a3cef8"
+    },
+    {
+      "path": "guide/img/original-full-cockpit.png",
+      "category": "same",
+      "sha256": "11c8fe9d03fcc20a7da362f3cb1ba2090c75055ffe272a9bc07870b97f2a684c"
+    },
+    {
+      "path": "guide/img/page-labelled.png",
+      "category": "same",
+      "sha256": "6a1790663b5a3a26675ba4aa5a3c105d58a1a46b435636da848e65de24eb0f26"
+    },
+    {
+      "path": "guide/img/page-through-guard.png",
+      "category": "same",
+      "sha256": "d78177663e937eea00093ac616f0c7602e7aa9190c41302a91c3ce7783d9a018"
+    },
+    {
+      "path": "guide/img/per-tool-call.png",
+      "category": "same",
+      "sha256": "00d0ae521d1e394d1e3d442f68aa1c66ceccffb7c354ad688cd74099644933fa"
+    },
+    {
+      "path": "guide/img/start-failed-says-why.png",
+      "category": "same",
+      "sha256": "8fc2bd589c51e79a403d6594969254ec243eb70ebe4f2a23300850c9db7488de"
+    },
+    {
+      "path": "guide/img/start-refused.png",
+      "category": "same",
+      "sha256": "2c6f9e72559c1963a452e907471cabbbc9586c3b8331e5aa0a3d05fff9037a63"
+    },
+    {
+      "path": "guide/img/status-stop.png",
+      "category": "same",
+      "sha256": "a15924f1d8afba3bbd63a72b9045b07e6831cc330a767e077d430546bc424320"
+    },
+    {
+      "path": "guide/img/version-checks.png",
+      "category": "same",
+      "sha256": "8e03b738ec74a9c2c8f1565a8a9a5436d2a4b0b5692cb72c8b175c4332bd82cb"
+    },
+    {
+      "path": "guide/img/watch-folder.png",
+      "category": "same",
+      "sha256": "67714f1acd154e7e28209b3ca6a7f36f4e5c943abb80a02651bca321a09ddb67"
+    },
+    {
+      "path": "install.py",
+      "category": "same",
+      "sha256": "d4105e70c55430e9ec4b331d00e9c97a0404bb107c22ed412caff6adc3ca95be"
+    },
+    {
+      "path": "only_this_computer.js",
+      "category": "same",
+      "sha256": "24df3b45eb9d3d1fa1634775b1d31f10b8ede5ea504a26c717e2bf06a8b9093f"
+    },
+    {
+      "path": "start.py",
+      "category": "same",
+      "sha256": "6fae29dc7b90549fe69e90aa33a1564165f4447fcd9de5bca37a4c193709d1b9"
+    },
+    {
+      "path": "tests/conftest.py",
+      "category": "same",
+      "sha256": "edb6e4c2f5025c18163bc6c54ef5112baa0b0a62248e224a78dd52d0f9916cc1"
+    },
+    {
+      "path": "tests/fake_agent_flow.py",
+      "category": "same",
+      "sha256": "170b46d05590ea7ea574e5eda4b1a3fba8646d4e5073eb127c3edb26e43d0601"
+    },
+    {
+      "path": "tests/fake_agent_flow_node.js",
+      "category": "same",
+      "sha256": "d697e5d04165e34551f38fad909a41894309cf52081a3fc50edda2911abaedb1"
+    },
+    {
+      "path": "tests/mac/mac_guard_stop_signals.py",
+      "category": "same",
+      "sha256": "76d67f66684710020b3cc864f08a05078d1b533555b6b55fb3fb7ed8ce15996b"
+    },
+    {
+      "path": "tests/mac/mac_printed_commands_python3.py",
+      "category": "same",
+      "sha256": "d8e7e3c9f6927e83018d039c5feef241fb1ee79eeea19042e10d9cb14520eedf"
+    },
+    {
+      "path": "tests/mac/mac_server_starts_quickly.py",
+      "category": "same",
+      "sha256": "1f266b3abe22073768eec355f536cb3738b38284c65b54c85caf15cb2e6b09fb"
+    },
+    {
+      "path": "tests/mac/mac_stop_spares_caller.py",
+      "category": "same",
+      "sha256": "a5929fab1eb171037ae177d82033046439fdfac272fe7fe6380fdb5d4ed2e297"
+    },
+    {
+      "path": "tests/mac/mac_vault_lookup.py",
+      "category": "same",
+      "sha256": "d67ee13a47f23b257574d8cea60656286df43112d1e9251dfbee1994d51ba55a"
+    },
+    {
+      "path": "tests/test_cleanup.py",
+      "category": "same",
+      "sha256": "5e49e12798d63ed8a739bc0cc1712a39a15806696c42a31e7cb8574b1f2fc477"
+    },
+    {
+      "path": "tests/test_hooks.py",
+      "category": "same",
+      "sha256": "f141a48abd6bd1ce518f7105220ab7cb88d214c15b32da9b3c922917e8a97457"
+    },
+    {
+      "path": "tests/test_install.py",
+      "category": "same",
+      "sha256": "8db368baac18553d7bccd97e49fe616667a60cd0fe700ed700293871e5ff34cc"
+    },
+    {
+      "path": "tests/test_other_websites.py",
+      "category": "same",
+      "sha256": "2fa66fbbf244104e4f68ab4643ca94adc60506752b269c3e438fd6c610e661ee"
+    },
+    {
+      "path": "tests/test_real_package.py",
+      "category": "same",
+      "sha256": "43fe89d90be935f88d32a53cf39001ffb3fca2aa21134f74fb5ffcfa97788b66"
+    },
+    {
+      "path": "tests/test_reliability.py",
+      "category": "same",
+      "sha256": "8c7f03ac2bf9ecabc25dbbe4769289c0315a3b0d2b09542a7edb397c88895d28"
+    },
+    {
+      "path": "tests/test_safety.py",
+      "category": "same",
+      "sha256": "9d632398954417f72b5b96e2e28972b5e92f28aa3f88b978ab20980a88f78aa2"
+    }
+  ]
+}
